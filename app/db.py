@@ -27,6 +27,11 @@ async def get_db() -> sqlalchemy.engine.base.Connection:
         connection.close()
 
 
+@router.get("/items/{item_id}")
+async def read_item(item_id: str):
+    return {"item_id": f"Hello {item_id}!"}
+
+
 @router.get('/info')
 async def get_url(connection=Depends(get_db)):
     """Verify we can connect to the database, 
@@ -38,3 +43,22 @@ async def get_url(connection=Depends(get_db)):
     """
     url_without_password = repr(connection.engine.url)
     return {'database_url': url_without_password}
+
+@router.get('/hello')
+async def hello():
+    """Returns a friendly greeting 👋"""
+    return "Hello world"
+
+from pydantic import BaseModel
+from typing import Optional
+
+class Item(BaseModel):
+    name: str
+    description: Optional[str] = None
+    price: float
+    tax: Optional[float] = None
+
+
+@router.post("/items/")
+async def create_item(item: Item):
+    return item
