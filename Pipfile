@@ -20,8 +20,6 @@ scikit-learn = "*"
 pydantic = "*"
 psycopg2-binary = "*"
 gunicorn = "*"
-pssql = "*"
-psql = "*"
 
 [requires]
 python_version = "3"
