@@ -2,11 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from app import db, ml, viz
+from app import db, ml, viz, messages
 
 description = """
-FastAPI using uvicorn. 
-See [https://fastapi.tiangolo.com/tutorial/metadata/](https://fastapi.tiangolo.com/tutorial/metadata/)
+Edit your app's title and description. See [https://fastapi.tiangolo.com/tutorial/metadata/](https://fastapi.tiangolo.com/tutorial/metadata/)
 
 To use these interactive docs:
 - Click on an endpoint below
@@ -14,19 +13,18 @@ To use these interactive docs:
 - Edit the Request body or any parameters
 - Click the **Execute** button
 - Scroll down to see the Server response Code & Details
-
-#<img src=>
 """
 
 app = FastAPI(
-    title='DS\' API',
-    description=description,
+    title='House Price DS API',
+    description='Visualize world metrics from Gapminder data',
     docs_url='/',
 )
 
-app.include_router(db.router, tags=["Lesley's database endpoints"])
+app.include_router(db.router, tags=['Database'])
 app.include_router(ml.router, tags=['Machine Learning'])
 app.include_router(viz.router, tags=['Visualization'])
+app.include_router(messages.router, tags=['Friendly Messages'])
 
 app.add_middleware(
     CORSMiddleware,
@@ -35,6 +33,9 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*'],
 )
+
+
+
 
 
 if __name__ == '__main__':

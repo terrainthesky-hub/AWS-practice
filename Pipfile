@@ -4,11 +4,24 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+awsebcli = "*"
+jupyter = "*"
+pytest = "*"
+pytest-pylint = "*"
 
 [packages]
-awsebcli = "*"
-gunicorn = "*"
+fastapi = "*"
+sqlalchemy = "*"
 typing-extensions = "*"
+uvicorn = {extras = ["standard"],version = "*"}
+plotly = "*"
+pandas = "*"
+scikit-learn = "*"
+pydantic = "*"
+psycopg2-binary = "*"
+gunicorn = "*"
+pssql = "*"
+psql = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3"
